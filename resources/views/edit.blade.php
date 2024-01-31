@@ -1,10 +1,15 @@
 @extends('Layouts.app')
 
-@section('title','Edit New Task')
+{{-- @section('title','Edit New Task') --}}
 
 
 @section('content')
-@if ($errors->any())
+@include('form' , ['task'=>$task])
+@endsection
+
+
+
+{{-- @if ($errors->any())
 
 <div>
     <ul>
@@ -40,7 +45,5 @@
 
 
 <button type="submit"> Edit Task </button>
-</form>
+</form> --}}
 
-
-@endsection

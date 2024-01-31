@@ -1,9 +1,17 @@
 @extends('Layouts.app')
 
-@section('title','Add New Task')
-
+{{-- @section('title','Add New Task') --}}
 
 @section('content')
+
+
+@include('form')
+
+@endsection
+
+
+
+
 {{--
 @if ($errors->any())
 <div>
@@ -17,7 +25,7 @@
 </div>
 @endif --}}
 
-<form action="{{ route('tasks.store')}}" method="post">
+{{-- <form action="{{ route('tasks.store')}}" method="post">
 
 @csrf
 
@@ -52,5 +60,4 @@
 <button type="submit"> Add Task </button>
 
 </form>
-
-@endsection
+ --}}

@@ -15,7 +15,9 @@ class TaskController extends Controller
     {
 
             return view('index',[
-                'tasks' => Task::all()
+                // 'tasks' => Task::latest()->get()
+                'tasks' => Task::latest()->paginate(3)
+
             ]);
 
     }

@@ -1,39 +1,34 @@
-<h1>
-    task list
-</h1>
+@extends('Layouts.app')
 
- <div>
+@section('title' ,'The list of tasks')
 
-    @if(session()->has('success'))
+
+@section('content')
+@if(session()->has('success'))
 <div>{{ session('success') }}</div>
     @endif
-</div>
-
-@if ($errors->any())
+@forelse ( $tasks as $task )
 
 <div>
-    <ul>
-        @foreach ($errors->all() as $error)
-             <li>
-                {{ $error }}
-             </li>
-        @endforeach
-    </ul>
-</div>
+    <a href="{{ route('tasks.show' , ['task'=>$task->id]) }}"> {{$task->title}}</a>
+   </div>
+
+   @empty
+   <div>
+       there are not tasks
+   </div>
+   @endforelse
+   
+@if ($tasks->count())
+{{ $tasks->links() }}
 @endif
 
-<div>
-
-    @forelse ( $tasks as $task )
-    <div>
-        <a href="{{ route('tasks.show' , ['task'=>$task->id]) }}"> {{$task->title}}</a>
-       </div>
-
-    @empty
-    <div>
-        there are not tasks
-    </div>
-    @endforelse
-
-
 </div>
+
+@endsection
+
+
+
+
+
+
