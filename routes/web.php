@@ -93,7 +93,7 @@ Route::get('/','\App\Http\Controllers\TaskController@View')->name('tasks.index')
 
 Route::prefix('tasks')->group(function () {
 
-    Route::view('/create', 'create');
+    Route::view('/create', 'create')->name('tasks.create');
 
     Route::get('/{task}','\App\Http\Controllers\TaskController@TaskID')->name('tasks.show');
 
@@ -104,6 +104,14 @@ Route::prefix('tasks')->group(function () {
     Route::put('/{task}','\App\Http\Controllers\TaskController@TaskUpdate')->name('tasks.update');
 
     Route::delete('/{task}','\App\Http\Controllers\TaskController@TaskDelete')->name('tasks.destroy');
+
+    Route::put('{task}/toggel_complete', function (Task $task) {
+        $task->ToggelComplete();
+        return redirect()
+            ->back()
+              ->with('success' , 'Task update successfully!');
+
+    })->name('task.toggel-complete');
 
 });
 

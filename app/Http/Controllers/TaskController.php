@@ -16,7 +16,7 @@ class TaskController extends Controller
 
             return view('index',[
                 // 'tasks' => Task::latest()->get()
-                'tasks' => Task::latest()->paginate(3)
+                'tasks' => Task::latest()->paginate(10)
 
             ]);
 
@@ -46,7 +46,7 @@ class TaskController extends Controller
         //   'long_description' => $validator['long_description']
         // ]);
         // $task = new Task;
-        return redirect()->route('tasks.index',['task'=>$task->id])
+        return redirect()->route('tasks.show',['task'=>$task->id])
         ->with('success','Task craeted successfully!');
     }
     public function TaskUpdate(Task $task,TaskRequest $request){
@@ -59,7 +59,7 @@ class TaskController extends Controller
         // ]);
         // $task = new Task;
         $task->update($request->validated());
-        return redirect()->route('tasks.index',['task'=>$task->id])
+        return redirect()->route('tasks.show',['task'=>$task->id])
         ->with('success','Task update successfully!');
     }
 
@@ -69,4 +69,5 @@ class TaskController extends Controller
         ->with('success','Task deleted successfully!');
     }
 
+  
 }
